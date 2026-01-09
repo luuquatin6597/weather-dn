@@ -1,0 +1,214 @@
+/* ==================== RESPONSIVE ENHANCEMENTS ==================== */
+
+/* Tối ưu cho Touch Devices */
+@media (hover: none) and (pointer: coarse) {
+  /* Tăng kích thước nút bấm cho dễ chạm */
+  .refresh-button,
+  .forecast-button,
+  .back-button {
+    min-height: 44px;
+    padding: 16px 20px;
+  }
+
+  .forecast-card {
+    min-height: 60px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: rgba(102, 126, 234, 0.1);
+  }
+
+  .stat-card {
+    cursor: pointer;
+    -webkit-tap-highlight-color: rgba(102, 126, 234, 0.05);
+  }
+
+  /* Tắt hover effects trên touch devices */
+  .forecast-card:hover,
+  .stat-card:hover {
+    transform: none;
+  }
+
+  /* Thêm active states cho touch */
+  .forecast-card:active {
+    transform: scale(0.98);
+    opacity: 0.9;
+  }
+
+  .refresh-button:active,
+  .forecast-button:active,
+  .back-button:active {
+    transform: scale(0.96);
+    opacity: 0.9;
+  }
+}
+
+/* Tối ưu cho màn hình nhỏ với notch (iPhone X+) */
+@supports (padding: max(0px)) {
+  .App {
+    padding-left: max(20px, env(safe-area-inset-left));
+    padding-right: max(20px, env(safe-area-inset-right));
+    padding-top: max(100px, env(safe-area-inset-top));
+    padding-bottom: max(20px, env(safe-area-inset-bottom));
+  }
+
+  @media (max-width: 480px) {
+    .App {
+      padding-left: max(12px, env(safe-area-inset-left));
+      padding-right: max(12px, env(safe-area-inset-right));
+      padding-top: max(50px, env(safe-area-inset-top));
+      padding-bottom: max(12px, env(safe-area-inset-bottom));
+    }
+  }
+}
+
+/* Tối ưu scroll cho modal trên mobile */
+@media (max-width: 768px) {
+  .forecast-detail-modal {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
+
+  .forecast-view {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
+}
+
+/* Tối ưu cho Dark Mode */
+@media (prefers-color-scheme: dark) {
+  /* Có thể thêm dark mode styles ở đây nếu cần */
+}
+
+/* Giảm animation cho người dùng có motion sensitivity */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .cloud {
+    animation: none;
+  }
+
+  .spinner {
+    animation: spin 2s linear infinite;
+  }
+}
+
+/* Tối ưu cho màn hình có contrast cao */
+@media (prefers-contrast: high) {
+  .weather-container {
+    border: 2px solid rgba(0, 0, 0, 0.3);
+  }
+
+  .stat-card,
+  .forecast-card,
+  .additional-info {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+  }
+
+  .night .weather-container {
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+
+  .night .stat-card,
+  .night .forecast-card {
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+}
+
+/* Print Styles */
+@media print {
+  .refresh-button,
+  .forecast-button,
+  .back-button,
+  .close-button {
+    display: none;
+  }
+
+  .weather-container {
+    box-shadow: none;
+    border: 1px solid #000;
+  }
+
+  .App {
+    background: white !important;
+  }
+}
+
+/* iPad Portrait & Landscape */
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) {
+  
+  .weather-container {
+    max-width: 600px;
+  }
+
+  .forecast-view {
+    max-width: 700px;
+  }
+
+  .weather-stats {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .forecast-card {
+    grid-template-columns: 1fr auto 1fr 1.5fr auto;
+  }
+}
+
+/* iPad Pro */
+@media only screen 
+  and (min-device-width: 1024px) 
+  and (max-device-width: 1366px) {
+  
+  .weather-container {
+    max-width: 650px;
+  }
+
+  .forecast-view {
+    max-width: 750px;
+  }
+}
+
+/* Foldable Phones (Surface Duo, Galaxy Fold, etc.) */
+@media (min-width: 540px) and (max-width: 720px) {
+  .weather-stats {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .forecast-card {
+    grid-template-columns: 1fr auto 1fr 1.5fr auto;
+  }
+}
+
+/* Extra small height screens (landscape mobile) */
+@media (max-height: 500px) {
+  .App {
+    padding: 15px;
+  }
+
+  .weather-container {
+    padding: 15px;
+  }
+
+  .main-weather-card {
+    margin-bottom: 15px;
+    padding: 15px;
+  }
+
+  .weather-stats {
+    margin-bottom: 15px;
+  }
+
+  .additional-info {
+    margin-bottom: 12px;
+  }
+
+  .weather-icon {
+    display: none;
+  }
+}
